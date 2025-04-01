@@ -1,41 +1,49 @@
+import 'package:aaaa/eje1/page_main.dart';
+import 'package:aaaa/eje2/page_main.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MainApp());
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        // useMaterial3: false,
-        primarySwatch: Colors.blue,
-      ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      title: "ejemplos de Widget",
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/ejemplo1': (context) => PageMainExample(),
+        '/ejemplo2': (context) => PageMainExample2(),
+      },
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
+      appBar: AppBar(title: const Text("Menu")),
       body: Center(
-        child: Text(
-          'Hello, World!',
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/ejemplo1'),
+              child: const Text("Ejemplo 1"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/ejemplo2'),
+              child: const Text('Ejemplo 2'),
+            ),
+          ],
         ),
       ),
     );
